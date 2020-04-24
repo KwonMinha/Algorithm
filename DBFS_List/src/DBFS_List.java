@@ -54,9 +54,7 @@ public class DBFS_List {
 		bfs_list(v, adjList, c);
 		Arrays.fill(c, false);
 	}
-
-
-
+	
 
 	//DFS - 인접리스트
 	public static void dfs_list(int v, LinkedList<Integer>[] a, boolean[] visited) {
