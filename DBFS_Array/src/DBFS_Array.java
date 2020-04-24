@@ -53,9 +53,7 @@ public class DBFS_Array {
 		System.out.println("BFS - 인접행렬로 구현");
 		bfs_array(v, adjArray, c);
 	}
-
-
-
+	
 
 	//DFS - 인접행렬 / 재귀로 구현 
 	public static void dfs_array_recursion(int v, int[][] a, boolean[] c) {
