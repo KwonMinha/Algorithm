@@ -46,7 +46,6 @@ public class DFS_Array {
 		//DFS - 인접행렬 / 스택으로 구현 
 		System.out.println("DFS - 인접행렬 / 스택으로 구현");
 		dfs_array_stack(v, adjArray, c, true);
-		Arrays.fill(c, false);
 	}
 	
 

@@ -1,20 +1,8 @@
 /**
  * @author Minha Gwon
- * @date 2020. 4. 25.
+ * @date 2020. 5. 9.
  * 
- * DFS와 BFS 인접리스트(Adjacency List)로 구현 
- * 
- * input
-   5 5 3
-   5 4
-   5 2
-   1 2
-   3 4
-   3 1
-   
-   output
-   3 1 2 5 4
-   3 1 4 2 5
+ * BFS 인접리스트(Adjacency List)로 구현 
  */
 
 import java.util.Arrays;
@@ -24,7 +12,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class DBFS_List {
+public class BFS_List {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
@@ -53,34 +41,11 @@ public class DBFS_List {
 			Collections.sort(adjList[i]);
 		}
 
-		//DFS - 인접리스트 
-		System.out.println("DFS - 인접리스트로 구현");
-		dfs_list(v, adjList, c);
-		Arrays.fill(c, false);
-		
-		System.out.println();
-		System.out.println();
-
 		//BFS - 인접리스트 
 		System.out.println("BFS - 인접리스트로 구현");
 		bfs_list(v, adjList, c);
-		Arrays.fill(c, false);
 	}
-	
 
-	//DFS - 인접리스트
-	public static void dfs_list(int v, LinkedList<Integer>[] a, boolean[] visited) {
-		// 재귀로 구현
-		visited[v] = true;
-		System.out.print(v + " ");
-
-		Iterator<Integer> iter = a[v].listIterator();
-		while (iter.hasNext()) {
-			int n = iter.next();
-			if (!visited[n])
-				dfs_list(n, a, visited);
-		}
-	}
 
 	//BFS - 인접리스트
 	public static void bfs_list(int v, LinkedList<Integer>[] a, boolean[] visited) {

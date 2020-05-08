@@ -44,7 +44,6 @@ public class DFS_List {
 		//DFS - 인접리스트 
 		System.out.println("DFS - 인접리스트로 구현");
 		dfs_list(v, adjList, c);
-		Arrays.fill(c, false);
 	}
 	
 
