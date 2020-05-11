@@ -5,7 +5,7 @@
  * 순열 : n 개 중에서 r 개 선택
  * 
  * 배열 안의 값 임의로 바꿀 수 있음 
- * 1. 순서O 2. 순서X
+ * 1. 순서(O) 2. 순서(X)
  * 
  * 연습문제 : https://www.acmicpc.net/problem/10974
  * 참고 : https://bcp0109.tistory.com/14?category=848939

@@ -7,7 +7,7 @@
  * 
  * Array 사용 
  * 배열 안의 값 임의로 바꿀 수 있음 
- * 둘 다 순서O 1. 백트래킹 사용 2. 재귀 사용 
+ * 둘 다 순서(O) 1. 백트래킹 사용 2. 재귀 사용 
  * 
  * 연습문제 : https://www.acmicpc.net/problem/2309
  * 참고 : https://bcp0109.tistory.com/15?category=848939

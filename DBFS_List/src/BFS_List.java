@@ -2,7 +2,19 @@
  * @author Minha Gwon
  * @date 2020. 5. 9.
  * 
- * BFS 인접리스트(Adjacency List)로 구현 
+ * BFS 인접리스트(Adjacency List)로 구현
+ * 
+ * <input>
+   5 5 3
+   5 4
+   5 2
+   1 2
+   3 4
+   3 1
+   
+   <output>
+   BFS - 인접리스트
+   3 1 4 2 5 
  */
 
 import java.util.Arrays;
@@ -41,13 +53,10 @@ public class BFS_List {
 			Collections.sort(adjList[i]);
 		}
 
-		//BFS - 인접리스트 
-		System.out.println("BFS - 인접리스트로 구현");
+		System.out.println("BFS - 인접리스트");
 		bfs_list(v, adjList, c);
 	}
 
-
-	//BFS - 인접리스트
 	public static void bfs_list(int v, LinkedList<Integer>[] a, boolean[] visited) {
 		Queue<Integer> queue = new LinkedList<Integer>();
 		visited[v] = true; 

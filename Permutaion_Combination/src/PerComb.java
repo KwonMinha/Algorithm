@@ -7,8 +7,8 @@
  * 
  * LinkedList 사용 
  * 리스트안의 값 n까지의 순서대로 주어짐(바꿀 수 없음) 
- * ex) input : 3 2
-       (0, 1, 2) 3개의 숫자 생성 그 중 2개를 뽑을 것
+ * input : 3 2
+   (0, 1, 2) 3개의 숫자 생성 그 중 2개를 뽑을 것
        
  * 참고 : https://limkydev.tistory.com/178
  * 연습문제 : https://www.acmicpc.net/problem/1260

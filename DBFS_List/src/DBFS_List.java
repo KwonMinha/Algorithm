@@ -4,7 +4,7 @@
  * 
  * DFS와 BFS 인접리스트(Adjacency List)로 구현 
  * 
- * input
+ * <input>
    5 5 3
    5 4
    5 2
@@ -12,9 +12,12 @@
    3 4
    3 1
    
-   output
-   3 1 2 5 4
-   3 1 4 2 5
+   <output>
+   DFS - 인접리스트
+   3 1 2 5 4 
+
+   BFS - 인접리스트
+   3 1 4 2 5 
  */
 
 import java.util.Arrays;
@@ -53,16 +56,11 @@ public class DBFS_List {
 			Collections.sort(adjList[i]);
 		}
 
-		//DFS - 인접리스트 
 		System.out.println("DFS - 인접리스트로 구현");
 		dfs_list(v, adjList, c);
 		Arrays.fill(c, false);
 		
-		System.out.println();
-		System.out.println();
-
-		//BFS - 인접리스트 
-		System.out.println("BFS - 인접리스트로 구현");
+		System.out.println("\n\nBFS - 인접리스트로 구현");
 		bfs_list(v, adjList, c);
 		Arrays.fill(c, false);
 	}

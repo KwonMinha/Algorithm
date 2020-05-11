@@ -3,6 +3,18 @@
  * @date 2020. 5. 9.
  * 
  * BFS 인접 행렬(Adjacency Array)로 구현 
+ * 
+ * <input>
+   4 5 1
+   1 2
+   1 3
+   1 4
+   2 4
+   3 4
+
+   <output>
+   BFS - 인접행렬
+   1 2 3 4 
  */
 
 import java.util.Arrays;
@@ -34,12 +46,10 @@ public class BFS_Array {
 			adjArray[v2][v1] = 1;
 		}
 
-		//BFS - 인접행렬 
-		System.out.println("BFS - 인접행렬로 구현");
+		System.out.println("BFS - 인접행렬");
 		bfs_array(v, adjArray, c);
 	}
 	
-	//BFS - 인접행렬 
 	public static void bfs_array(int v, int[][] a, boolean[] c) {
 		Queue<Integer> q = new LinkedList<>();
 		int n = a.length - 1;

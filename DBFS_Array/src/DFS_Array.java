@@ -3,6 +3,21 @@
  * @date 2020. 4. 25.
  * 
  * DFS 인접행렬(Adjacency Array)로 구현 
+ * 
+ * <input>
+   4 5 1
+   1 2
+   1 3
+   1 4
+   2 4
+   3 4
+
+   <output>
+   DFS - 인접행렬 / 재귀로 구현
+   1 2 4 3 
+
+   DFS - 인접행렬 / 스택으로 구현
+   1 2 4 3 
  */
 
 import java.util.Arrays;
@@ -35,20 +50,14 @@ public class DFS_Array {
 			adjArray[v2][v1] = 1;
 		}
 
-		//DFS - 인접행렬 / 재귀로 구현 
 		System.out.println("DFS - 인접행렬 / 재귀로 구현");
 		dfs_array_recursion(v, adjArray, c);
 		Arrays.fill(c, false);
-		
-		System.out.println();
-		System.out.println();
 
-		//DFS - 인접행렬 / 스택으로 구현 
-		System.out.println("DFS - 인접행렬 / 스택으로 구현");
+		System.out.println("\n\nDFS - 인접행렬 / 스택으로 구현");
 		dfs_array_stack(v, adjArray, c, true);
 	}
 	
-
 	//DFS - 인접행렬 / 재귀로 구현 
 	public static void dfs_array_recursion(int v, int[][] a, boolean[] c) {
 		int l = a.length-1;
@@ -76,10 +85,11 @@ public class DFS_Array {
 
 			for(int i = 1; i <= l; i++) {
 				if(a[k][i] == 1 && !c[i]) {
-					stack.push(k);
+					stack.push(i);
 					System.out.print(i + " ");
 					c[i] = true;
 					flag = true;
+					break;
 				}
 			}
 
