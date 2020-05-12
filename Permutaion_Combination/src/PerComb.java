@@ -30,32 +30,25 @@ public class PerComb {
         	System.out.print(i + " ");
         }
         System.out.println(")");
-        System.out.println();
          
         //순열 (순서있게 배열)
-        System.out.println("순열");
+        System.out.println("\n순열");
         LinkedList<Integer> perArr = new LinkedList<Integer>(); 
         int[] perCheck = new int[n];
         permutation(n, r, perArr, perCheck);
         
-        System.out.println();
-        
         //중복순열 (순서있게 배열 + 자기 자신도 포함)
-        System.out.println("중복순열");
+        System.out.println("\n중복순열");
         LinkedList<Integer> rePerArr = new LinkedList<Integer>();   
         rePermutation(n, r, perArr);
-        
-        System.out.println();
          
-        //조합 (순서관심없고 뽑은 유무만 생각)
-        System.out.println("조합");
+        //조합 (순서 관심 없고 뽑은 유무만 생각)
+        System.out.println("\n조합");
         int[] comArr = new int[r];
         combination(comArr, n, r, 0, 0);
         
-        System.out.println();
-         
-        //중복 조합 (순서관심없고 뽑은 유무만 생각 + 자기 자신도 포함)
-        System.out.println("중복조합");
+        //중복 조합 (순서 관심 없고 뽑은 유무만 생각 + 자기 자신도 포함)
+        System.out.println("\n중복조합");
         int[] reComArr = new int[r];
         reCombination(reComArr, n, r, 0, 0);
     }
@@ -71,7 +64,7 @@ public class PerComb {
         }
         for(int i=0; i<n; i++){
             if(perCheck[i] == 0){
-                perArr.add(i); // 값을 넣는 부분 
+                perArr.add(i); //값을 넣는 부분 
                 perCheck[i] = 1;
                 permutation(n, r, perArr, perCheck);
                 perCheck[i] = 0;
@@ -80,7 +73,7 @@ public class PerComb {
         } 
     }
     
-    //중복순열 (순서있게 배열 + 자시자신도 포함)
+    //중복순열 (순서있게 배열 + 자기 자신도 포함)
     private static void rePermutation(int n, int r, LinkedList<Integer> rePerArr) {
         if(rePerArr.size() == r){
             for(int i : rePerArr){
@@ -97,7 +90,7 @@ public class PerComb {
         } 
     }
     
-    //조합 (순서관심없고 뽑은 유무만 생각)
+    //조합 (순서 관심 없고 뽑은 유무만 생각)
     private static void combination(int[] comArr, int n, int r, int index, int target) {
         if(r==0){
             for(int i : comArr){
@@ -109,11 +102,11 @@ public class PerComb {
         if(target == n)return;
          
         comArr[index] = target;
-        combination(comArr, n, r-1, index+1, target+1); //뽑는경우
-        combination(comArr, n, r, index, target+1); //안뽑는경우   
+        combination(comArr, n, r-1, index+1, target+1); //뽑는 경우
+        combination(comArr, n, r, index, target+1); //안 뽑는 경우   
     }
     
-    //중복 조합 (순서관심없고 뽑은 유무만 생각 + 자기자신도 포함)
+    //중복 조합 (순서 관심 없고 뽑은 유무만 생각 + 자기 자신도 포함)
     private static void reCombination(int[] reComArr, int n, int r, int index, int target) {
         if(r==0){
             for(int i : reComArr){
@@ -125,8 +118,8 @@ public class PerComb {
         if(target == n)return;
          
         reComArr[index] = target;
-        reCombination(reComArr, n, r-1, index+1, target);//뽑는경우
-        reCombination(reComArr, n, r, index, target+1);//안뽑는경우
+        reCombination(reComArr, n, r-1, index+1, target);//뽑는 경우
+        reCombination(reComArr, n, r, index, target+1);//안 뽑는 경우
     }
  
 }
