@@ -1,37 +1,27 @@
 /**
  * @author Minha Gwon
  * @date 2020. 4. 25.
- * 
- * 순열 : n 개 중에서 r 개 선택
- * 
- * 배열 안의 값 임의로 바꿀 수 있음 
- * 1. 순서(O) 2. 순서(X)
- * 
- * 연습문제 : https://www.acmicpc.net/problem/10974
- * 참고 : https://bcp0109.tistory.com/14?category=848939
+ * 순열
+ * 블로그 : https://minhamina.tistory.com/37
  */
 
 public class Permutation {
 	public static void main(String[] args) {
-		int n = 5; //배열 개수 
-		int[] arr = {1, 2, 3, 4, 7}; // 배열 안에 들어갈 값 
-		int[] output = new int[n];
-		boolean[] visited = new boolean[n];
+		int[] arr = {1, 2, 3}; //순열을 만들 배열 
+		int n = arr.length;
+		int[] output = new int[n]; //순열 출력을 위한 배열 
+		boolean[] visited = new boolean[n]; // 중복해서 뽑지 않기 위해, 배열의 원소를 방문했는지를 체크하기 위한 배열 
 
-		//1. 순서O
-		per1(arr, output, visited, 0, n, 3);
+		per1(arr, output, visited, 0, n, 3); //r = 3, 3개를 뽑을 것 
 		
-		//2. 순서X 
 		System.out.println();
-		
 		per2(arr, 0, n, 3);
 	}
 
-	//1. 순서를 지키면서 n 개중에서 r 개를 뽑는 경우
-	//사용 예시 : per1(arr, output, visited, 0, n, r);
+	//1. 순서를 지키면서 n 개중에서 r 개를 뽑는 경우 - visited 배열을 사용해 DFS로 구현 
 	static void per1(int[] arr, int[] output, boolean[] visited, int depth, int n, int r) {
 		if(depth == r) {
-			print(output, r);
+			print(output, r); //순열 출력을 위한 print 함수 
 			return;
 		}
 
@@ -39,15 +29,13 @@ public class Permutation {
 			if(visited[i] != true) {
 				visited[i] = true;
 				output[depth] = arr[i];
-				per1(arr, output, visited, depth + 1, n, r);       
-				// output[depth] = 0; // 이 줄은 없어도 됨
+				per1(arr, output, visited, depth + 1, n, r);    
 				visited[i] = false;
 			}
 		}
 	}
 
-	//2. 순서 없이 n 개중에서 r 개를 뽑는 경우
-	//사용 예시 : per2(arr, 0, n, r);
+	//2. 순서 없이 n 개중에서 r 개를 뽑는 경우 - SWAP을 이용해 구현 
 	static void per2(int[] arr, int depth, int n, int r) {
 		if(depth == r) {
 			print(arr, r);

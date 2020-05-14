@@ -15,8 +15,8 @@
  
 public class Combination {
     public static void main(String[] args) {
-        int n = 4;
-        int[] arr = {1, 2, 3, 4};
+        int[] arr = {1, 2, 3}; //n개의 값 
+        int n = arr.length;
         boolean[] visited = new boolean[n];
  
         //1. 백트래킹 사용해 구현
