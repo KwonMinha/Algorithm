@@ -1,27 +1,19 @@
 /**
  * @author Minha Gwon
  * @date 2020. 4. 25.
- * 
- * 조합 : n 개 중에서 r 개 선택
- * r(뽑는 갯수 1, 2, 3... 늘려가며 뽑음)
- * 
- * Array 사용 
- * 배열 안의 값 임의로 바꿀 수 있음 
- * 둘 다 순서(O) 1. 백트래킹 사용 2. 재귀 사용 
- * 
- * 연습문제 : https://www.acmicpc.net/problem/2309
- * 참고 : https://bcp0109.tistory.com/15?category=848939
+ * 조합
+ * 블로그 https://minhamina.tistory.com/38
  */
  
 public class Combination {
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3}; //n개의 값 
+        int[] arr = {1, 2, 3}; //조합을 만들 배열 
         int n = arr.length;
         boolean[] visited = new boolean[n];
  
         //1. 백트래킹 사용해 구현
         for(int i = 1; i <= n; i++) {
-            comb1(arr, visited, 0, n, i);
+            comb1(arr, visited, 0, n, i); //i 값이 뽑을 r의 개수이다.
         }
         
         System.out.println();
@@ -32,8 +24,7 @@ public class Combination {
         }
     }
  
-    // 백트래킹 사용
-    // 사용 예시 : comb1(arr, visited, 0, n, r)
+    //1. 백트래킹 사용해 구현
     static void comb1(int[] arr, boolean[] visited, int start, int n, int r) {
         if(r == 0) {
             print(arr, visited, n);
@@ -48,8 +39,7 @@ public class Combination {
         }
     }
  
-    // 재귀 사용
-    // 사용 예시 : comb2(arr, visited, 0, n, r)
+    //2. 재귀 사용해 구현 
     static void comb2(int[] arr, boolean[] visited, int depth, int n, int r) {
         if(r == 0) {
             print(arr, visited, n);
