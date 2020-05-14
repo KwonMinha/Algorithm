@@ -18,7 +18,9 @@
 
    BFS - 인접리스트
    3 1 4 2 5 
- * DFS 참고 https://minhamina.tistory.com/22
+ * 블로그
+   DFS - https://minhamina.tistory.com/22
+   BFS - https://minhamina.tistory.com/36
  */
 
 import java.util.Arrays;

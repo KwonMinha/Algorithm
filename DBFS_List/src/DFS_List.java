@@ -15,7 +15,7 @@
    <output>
    DFS - 인접리스트
    3 1 2 5 4 
- * 참고 https://minhamina.tistory.com/22
+ * 블로 https://minhamina.tistory.com/22
  */
 
 import java.util.Arrays;

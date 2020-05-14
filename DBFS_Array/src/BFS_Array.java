@@ -15,6 +15,7 @@
    <output>
    BFS - 인접행렬
    1 2 3 4 
+ * 블로그 https://minhamina.tistory.com/36
  */
 
 import java.util.Arrays;

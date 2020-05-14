@@ -18,7 +18,7 @@
 
    DFS - 인접행렬 / 스택으로 구현
    1 2 4 3 
- * 참고 https://minhamina.tistory.com/22
+ * 블로그 https://minhamina.tistory.com/22
  */
 
 import java.util.Arrays;

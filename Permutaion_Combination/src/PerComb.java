@@ -10,6 +10,7 @@
  * input : 3 2
    (0, 1, 2) 3개의 숫자 생성 그 중 2개를 뽑을 것
  *
+ * 저작자 https://limkydev.tistory.com/178
  * 블로그
    순열 - https://minhamina.tistory.com/37
    조합 - https://minhamina.tistory.com/38
