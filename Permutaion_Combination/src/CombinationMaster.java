@@ -1,3 +1,9 @@
+/**
+ * @author Minha Gwon
+ * @date 2020. 6. 23.
+ * 다양한 방식으로 조합을 구현한 코드들 
+ */
+
 import java.util.Scanner;
 
 public class CombinationMaster {
@@ -9,32 +15,31 @@ public class CombinationMaster {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		N = sc.nextInt();
-		R = sc.nextInt();
+		N = sc.nextInt(); 
+		R = sc.nextInt(); // 뽑을 갯수 
 		indexArr = new int[N];
 		valueArr = new int[N];
 		visited = new boolean[N];
 
-		//customArr에 넣을 값 입력 받음 
 		for(int i = 0; i < N; i++) {
 			valueArr[i] = sc.nextInt();
 		}
 
-//		indexComb(0, R, 0);
-//		System.out.println();
-//		
-//		visitedComb(R, 0);
-//		System.out.println();
-//		
-//		backVisitedComb(R, 0);
-//		System.out.println();
+		indexComb(0, R, 0);
+		System.out.println();
+
+		visitedComb(R, 0);
+		System.out.println();
+
+		visitedComb2(R, 0);
+		System.out.println();
 		
 		indexComb2(0, 0);
 	}
 
 	//index 변수와 재귀를 이용해 구현 
 	public static void indexComb(int index, int r, int target) {
-		if(r == 0) { //r개를 다 뽑았으니 종료 = 조합 완성!
+		if(r == 0) { //r개를 다 뽑았으니 종료 > 조합 완성
 			for(int i = 0; i < R; i++) 
 				System.out.print(valueArr[indexArr[i]] + " ");
 			System.out.println();
@@ -46,16 +51,17 @@ public class CombinationMaster {
 			indexComb(index, r, target+1); //안 뽑는 경우 
 		}
 	}
-	
+
+	//index 변수와 백트래킹을 이용해 구현 
 	public static void indexComb2(int index, int target) {
 		if(index == R) {
 			for(int i = 0; i < R; i++) 
 				System.out.print(valueArr[indexArr[i]] + " ");
 			System.out.println();
-			
+
 			return;
 		}
-		
+
 		for(int i = target; i < N; i++) {
 			indexArr[index] = i;
 			indexComb2(index+1, i+1);
@@ -84,7 +90,7 @@ public class CombinationMaster {
 	}
 
 	//visited 배열과 백트래킹을 사용해 구현 
-	public static void backVisitedComb(int r, int target) {
+	public static void visitedComb2(int r, int target) {
 		if(r == 0) {
 			for(int i = 0; i < N; i++) {
 				if(visited[i])
@@ -93,10 +99,10 @@ public class CombinationMaster {
 			System.out.println();
 			return;
 		} 
-		
+
 		for(int i = target; i < N; i++) {
 			visited[i] = true;
-			backVisitedComb(r-1, i+1);
+			visitedComb2(r-1, i+1);
 			visited[i] = false;
 		}
 	}
