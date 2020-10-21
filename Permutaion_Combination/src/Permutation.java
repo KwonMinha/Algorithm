@@ -11,14 +11,17 @@ public class Permutation {
 		int n = arr.length;
 		int[] output = new int[n]; //순열 출력을 위한 배열 
 		boolean[] visited = new boolean[n]; // 중복해서 뽑지 않기 위해, 배열의 원소를 방문했는지를 체크하기 위한 배열 
-
+       
+        System.out.println("-------- 1. DFS ---------");
 		per1(arr, output, visited, 0, n, 3); //r = 3, 3개를 뽑을 것 
 		
+  
+        System.out.println("\n-------- 2. Swap ---------");
 		System.out.println();
 		per2(arr, 0, n, 3);
 	}
 
-	//1. 순서를 지키면서 n 개중에서 r 개를 뽑는 경우 - visited 배열을 사용해 DFS로 구현 
+	//1. DFS를 이용해 구현  - 순서를 지키면서 n 개중에서 r 개를 뽑는 경우
 	static void per1(int[] arr, int[] output, boolean[] visited, int depth, int n, int r) {
 		if(depth == r) {
 			print(output, r); //순열 출력을 위한 print 함수 
@@ -35,7 +38,7 @@ public class Permutation {
 		}
 	}
 
-	//2. 순서 없이 n 개중에서 r 개를 뽑는 경우 - SWAP을 이용해 구현 
+	//2. Swap 함수를 이용해 구현 - 순서 없이 n 개중에서 r 개를 뽑는 경우
 	static void per2(int[] arr, int depth, int n, int r) {
 		if(depth == r) {
 			print(arr, r);
@@ -49,7 +52,7 @@ public class Permutation {
 		}
 	}
 
-	static void swap(int[] arr, int depth, int i) {
+	static void swap(int[] arr, int depth, int i) { //두 배열의 값을 바꾸는 Swap 함수 
 		int temp = arr[depth];
 		arr[depth] = arr[i];
 		arr[i] = temp;
