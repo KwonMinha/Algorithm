@@ -1,5 +1,5 @@
 /**
- * @author gwonminha
+ * @author Gwon Minha
  * 
  * 이진트리의 전위, 중위, 후위 순회 결과 출력하는 프로그램 
  * Class 구조체에 노드값, 왼쪽 자식 노드값, 오른쪽 자식 노드값 저장해 구현 
@@ -38,25 +38,26 @@ public class TreeClass {
 	}
 
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 		TreeClass t = new TreeClass();
-        Node n4 = t.createNode(null, 4, null);
-        Node n5 = t.createNode(null, 5, null);
-        Node n2 = t.createNode(n4, 2, n5);
-        Node n3 = t.createNode(null, 3, null);
-        Node n1 = t.createNode(n2, 1, n3);
-        
-        t.setRoot(n1);
-        
-        System.out.println("전위 순회");
-        t.preOrder(t.getRoot());
-        
-        System.out.println("\n중위 순회");
-        t.inOrder(t.getRoot());
-        
-        System.out.println("\n후위 순회");
-        t.postOrder(t.getRoot());
+		Node n4 = t.createNode(null, 4, null);
+		Node n5 = t.createNode(null, 5, null);
+		Node n2 = t.createNode(n4, 2, n5);
+		Node n3 = t.createNode(null, 3, null);
+		Node n1 = t.createNode(n2, 1, n3);
+
+		t.setRoot(n1);
+
+		System.out.println("전위 순회");
+		t.preOrder(t.getRoot());
+
+		System.out.println("\n중위 순회");
+		t.inOrder(t.getRoot());
+
+		System.out.println("\n후위 순회");
+		t.postOrder(t.getRoot());
 	}
-	
+
 	//전위순회 Preorder : Root -> Left -> Right
 	//1 -> 2 -> 4 -> 5 -> 3
 	public void preOrder(Node node) {
@@ -76,6 +77,7 @@ public class TreeClass {
 			inOrder(node.right);
 		}
 	}
+
 
 	//후위순회 Postorder : Left -> Right -> Root
 	//4 -> 5 -> 2 -> 3 -> 1
