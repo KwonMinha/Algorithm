@@ -35,96 +35,95 @@ class Node { //트리의 노드 정보를 저장할 클래스 구조체
 	int data; //노드 값 
 	Node left; //왼쪽 자식 노드 참조 값 
 	Node right; //오른쪽 자식 노드 참조 값 
+	
+	Node(int data){ //참조되는 값은 모르닌까 일단 data 값을 기반으로 Node 객체 생성 
+		this.data = data;
+	}
 }
 
 public class TreeOrderClass {
 	public Node root;
 
-	public void setRoot(Node node) {
-		this.root = node;
+	public void createNode(int data, int leftData, int rightData) {
+		if(root == null) {//초기 상태 - 루트 노드 생성 
+			root = new Node(data);
+			
+			//좌우 값이 있는 경우, 즉 -1이 아닌 경우 노드 생성 
+			if(leftData != -1) {
+				root.left = new Node(leftData); //왼쪽 자식 노드 값을 가지는 Node 인스턴스 생성 
+			}
+			if(rightData != -1) {
+				root.right = new Node(rightData); //오른쪽 자식 노드 값을 가지는 Node 인스턴스 생성 
+			}
+		} else { //초기 상태가 아니라면, 루트 노드 생성 이후 만들어진 노드 중 어떤건지를 찾아야함 
+			searchNode(root, data, leftData, rightData);
+		}
 	}
-
-	public Node getRoot() {
-		return root;
-	}
-
-	public Node createNode(Node left, int data, Node right) {
-		Node node = new Node();
-		node.data = data;
-		node.left = left;
-		node.right = right;
-
-		return node;
+	
+	//매개변수로 들어온 root노드를 시작으로 data와 같은 값을 가진 node를 찾는다. 
+	//찾을 때까지 root노드에서 부터 왼쪽, 오른쪽으로 내려감 
+	public void searchNode(Node node, int data, int leftData, int rightData) { 
+		if(node == null) { //도착한 노드가 null이면 재귀 종료 - 찾을(삽입할) 노드 X
+			return;
+		} else if(node.data == data) { //들어갈 위치를 찾았다면 
+ 			if(leftData != -1) { //.이 아니라 값이 있는 경우에만 좌우 노드 생성 
+ 				node.left = new Node(leftData);
+ 			}
+ 			if(rightData != -1) {
+ 				node.right = new Node(rightData);
+ 			}
+ 		} else { //아직 찾지못했고 탐색할 노드가 남아 있다면 
+ 			searchNode(node.left, data, leftData, rightData); //왼쪽 재귀 탐색 
+ 			searchNode(node.right, data, leftData, rightData); //오른쪽 재귀 탐색 
+ 		}
 	}
 
 	public static void main(String[] args) {
-//		TreeClass t = new TreeClass();
-//        Node n4 = t.createNode(null, 4, null);
-//        Node n5 = t.createNode(null, 5, null);
-//        Node n2 = t.createNode(n4, 2, n5);
-//        Node n3 = t.createNode(null, 3, null);
-//        Node n1 = t.createNode(n2, 1, n3);
-//        
-//        t.setRoot(n1);
-		
-		
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		TreeOrderClass t = new TreeOrderClass();
+		
 		for (int i = 0; i < n; i++) {
 			int a = sc.nextInt();
 			int b = sc.nextInt();
 			int c = sc.nextInt();
 			
-			Node a1 = null;
-			Node c1 = null;
-			
-			
-			if(a == -1)
-				a = null;
 			t.createNode(a, b, c);
-			tree[a][0] = b; // 0은 left
-			tree[a][1] = c; // 1은 right
 		}
-		
-		
         
         System.out.println("전위 순회");
-        t.preOrder(t.getRoot());
+        t.preOrder(t.root);
         
         System.out.println("\n중위 순회");
-        t.inOrder(t.getRoot());
+        t.inOrder(t.root);
         
         System.out.println("\n후위 순회");
-        t.postOrder(t.getRoot());
+        t.postOrder(t.root);
 	}
 	
 	//전위순회 Preorder : Root -> Left -> Right
-	//1 -> 2 -> 4 -> 5 -> 3
 	public void preOrder(Node node) {
 		if(node != null) {
 			System.out.print(node.data + " ");
-			preOrder(node.left);
-			preOrder(node.right);
+			if(node.left != null) preOrder(node.left);
+			if(node.right != null) preOrder(node.right);
 		}
 	}
 
 	//중위 순회 Inorder : Left -> Root -> Right
-	//4 -> 2 -> 5 -> 1 -> 3
 	public void inOrder(Node node) {
 		if(node != null) {
-			inOrder(node.left);
+			if(node.left != null) inOrder(node.left);
 			System.out.print(node.data + " ");
-			inOrder(node.right);
+			if(node.right != null) inOrder(node.right);
 		}
 	}
 
 	//후위순회 Postorder : Left -> Right -> Root
-	//4 -> 5 -> 2 -> 3 -> 1
 	public void postOrder(Node node) {
 		if(node != null) {
-			postOrder(node.left);
-			postOrder(node.right);
+			if(node.left != null) postOrder(node.left);
+			if(node.right != null) postOrder(node.right);
 			System.out.print(node.data + " ");
 		}
 	}
