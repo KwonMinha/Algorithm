@@ -1,16 +1,18 @@
 /**
- * @author gwonminha
+ * @author Gwon Minha
  * 
- * 루트가 0인 이진트리 전위, 중위, 후위 순회 결과 출력 프로그램 
-
+ * 이차원 배열로 구현한 트리의 전위, 중위, 후위 순회 결과 출력 프로그램 
+ * 2차원 배열 [x][0] -> 노드x의 왼쪽 자식
+            [x][1] -> 노드x의 오른쪽 자식값을 저장하는 방식으로 트리 입력 받음 
+                   
    입력 : 첫 번째 줄에 트리의 노드 개수 n이 주어진다. ( 1 ≤ n ≤ 100 ) 
          두 번째 줄부터 트리의 정보가 주어진다. 각 줄은 3개의 숫자 a, b, c로 이루어지며, 
          그 의미는 노드 a의 왼쪽 자식노드가 b, 오른쪽 자식노드가 c라는 뜻이다. 
          자식노드가 존재하지 않을 경우에는 -1이 주어진다.
 
-  출력 : 첫 번째 줄에 전위순회, 두 번째 줄에 중위순회, 세 번째 줄에 후위순회를 한 결과를 출력한다.
+   출력 : 첫 번째 줄에 전위순회, 두 번째 줄에 중위순회, 세 번째 줄에 후위순회를 한 결과를 출력한다.
 
-  예제 :  
+   예제 :  
                     
 6
 0 1 2
@@ -26,9 +28,6 @@
     / \   \
    3   4   5
    
- * 2차원 배열을 이용해 [x][0] -> 노드x의 왼쪽 자식
-                   [x][1] -> 노드x의 오른쪽 자식
-                   으로 트리 입력 받음 
  */
 
 import java.util.*;
@@ -40,7 +39,7 @@ public class TreeOrder2Matrix {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		n = sc.nextInt();
-		tree = new int[n][2];
+		tree = new int[n][2]; //tree 저장을 위한 2차원 배열 
 
 		for (int i = 0; i < n; i++) {
 			int a = sc.nextInt();
@@ -49,7 +48,7 @@ public class TreeOrder2Matrix {
 			tree[a][0] = b; // 0은 left
 			tree[a][1] = c; // 1은 right
 		}
-
+		
 		System.out.println("전위 순회");
 		preOrder(0);
 
