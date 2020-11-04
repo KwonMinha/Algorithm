@@ -59,9 +59,9 @@ public class TreeOrder2Matrix {
 		postOrder(0);
 	}
 
-	//전위순회
+	//전위순회 Preorder : Root -> Left -> Right
 	public static void preOrder(int x) {
-		if (tree[x][0] == -1 && tree[x][1] == -1) {
+		if (tree[x][0] == -1 && tree[x][1] == -1) { //왼쪽 자식이나 오른쪽 자식이 없다면 (-1이라면) 순회X 
 			System.out.print(x + " ");
 		} else {
 			System.out.print(x + " ");
@@ -74,9 +74,9 @@ public class TreeOrder2Matrix {
 		}
 	}
 
-	// 중위순회
+	//중위 순회 Inorder : Left -> Root -> Right
 	public static void inOrder(int x) {
-		if(tree[x][0] == -1 && tree[x][1] == -1) { //왼쪽 자식이나 오른쪽 자식이 없다면 (-1이라면) 순회X 
+		if(tree[x][0] == -1 && tree[x][1] == -1) { 
 			System.out.print(x + " ");
 		} else {
 			if(tree[x][0] != -1) {
@@ -89,7 +89,7 @@ public class TreeOrder2Matrix {
 		}
 	}
 
-	// 후위순회
+	//후위순회 Postorder : Left -> Right -> Root
 	public static void postOrder(int x) {
 		if(tree[x][0] == -1 && tree[x][1] == -1) {
 			System.out.print(x + " ");
