@@ -46,7 +46,6 @@ public class DFS_AllPath {
 		}
 
 		dfs_allPath(v, end, stack, adjArray, visited);
-		System.out.println(stack.isEmpty());
 	}
 
 	public static void dfs_allPath(int v, int end, Stack<Integer> stack, int[][] adjArray, boolean[] visited) {
