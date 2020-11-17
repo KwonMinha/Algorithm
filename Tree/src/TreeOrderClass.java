@@ -36,13 +36,14 @@ class Node { //트리의 노드 정보를 저장할 클래스 구조체
 	Node left; //왼쪽 자식 노드 참조 값 
 	Node right; //오른쪽 자식 노드 참조 값 
 	
-	Node(int data){ //참조되는 값은 모르닌까 일단 data 값을 기반으로 Node 객체 생성 
+	//추가할 때 참조되는 왼쪽, 오른쪽 자식의 값은 모르닌까 일단 data 값을 기반으로 Node 객체 생성 
+	Node(int data){ 
 		this.data = data;
 	}
 }
 
 public class TreeOrderClass {
-	public Node root;
+	public Node root; //초기 root는 null
 
 	public void createNode(int data, int leftData, int rightData) {
 		if(root == null) {//초기 상태 - 루트 노드 생성 
@@ -77,29 +78,7 @@ public class TreeOrderClass {
  			searchNode(node.right, data, leftData, rightData); //오른쪽 재귀 탐색 
  		}
 	}
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		TreeOrderClass t = new TreeOrderClass();
-		
-		for (int i = 0; i < n; i++) {
-			int a = sc.nextInt();
-			int b = sc.nextInt();
-			int c = sc.nextInt();
-			
-			t.createNode(a, b, c);
-		}
-        
-        System.out.println("전위 순회");
-        t.preOrder(t.root);
-        
-        System.out.println("\n중위 순회");
-        t.inOrder(t.root);
-        
-        System.out.println("\n후위 순회");
-        t.postOrder(t.root);
-	}
+	
 	
 	//전위순회 Preorder : Root -> Left -> Right
 	public void preOrder(Node node) {
@@ -126,6 +105,29 @@ public class TreeOrderClass {
 			if(node.right != null) postOrder(node.right);
 			System.out.print(node.data + " ");
 		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		TreeOrderClass t = new TreeOrderClass();
+		
+		for (int i = 0; i < n; i++) {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+			int c = sc.nextInt();
+			
+			t.createNode(a, b, c);
+		}
+        
+        System.out.println("전위 순회");
+        t.preOrder(t.root);
+        
+        System.out.println("\n중위 순회");
+        t.inOrder(t.root);
+        
+        System.out.println("\n후위 순회");
+        t.postOrder(t.root);
 	}
 
 }
