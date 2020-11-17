@@ -18,31 +18,26 @@
 
    DFS - 인접행렬 / 스택으로 구현
    1 2 4 3 
+
  * 블로그 https://minhamina.tistory.com/22
  */
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 public class DFS_Array {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		int n = sc.nextInt(); //정점의 개수 
-		int m = sc.nextInt(); //간선의 개수 
-		int v = sc.nextInt(); //탐색을 시작할 정점의 번호 
+		int n = sc.nextInt(); // 정점의 개수 
+		int m = sc.nextInt(); // 간선의 개수 
+		int v = sc.nextInt(); // 탐색을 시작할 정점의 번호 
 
-		boolean c[] = new boolean[n + 1]; // 방문 check
+		boolean visited[] = new boolean[n + 1]; // 방문 순서를 위해 오름차순 정렬 
 
 		int[][] adjArray = new int[n+1][n+1];
 
-		//두 정점 사이에 여러 개의 간선이 있을 수 있다.
-		//입력으로 주어지는 간선은 양방향이다.
+		// 두 정점 사이에 여러 개의 간선이 있을 수 있다.
+		// 입력으로 주어지는 간선은 양방향이다.
 		for(int i = 0; i < m; i++) {
 			int v1 = sc.nextInt();
 			int v2 = sc.nextInt();
@@ -52,44 +47,45 @@ public class DFS_Array {
 		}
 
 		System.out.println("DFS - 인접행렬 / 재귀로 구현");
-		dfs_array_recursion(v, adjArray, c);
-		Arrays.fill(c, false);
+		dfs_array_recursion(v, adjArray, visited);
+		Arrays.fill(visited, false); // 스택 DFS를 위해 visited 배열 초기화
 
 		System.out.println("\n\nDFS - 인접행렬 / 스택으로 구현");
-		dfs_array_stack(v, adjArray, c, true);
+		dfs_array_stack(v, adjArray, visited, true);
 	}
-	
+
 	//DFS - 인접행렬 / 재귀로 구현 
-	public static void dfs_array_recursion(int v, int[][] a, boolean[] c) {
-		int l = a.length-1;
-		c[v] = true;
+	public static void dfs_array_recursion(int v, int[][] adjArray, boolean[] visited) {
+		int l = adjArray.length-1;
+		visited[v] = true;
 		System.out.print(v + " ");
 
 		for(int i = 1; i <= l; i++) {
-			if(a[v][i] == 1 && !c[i]) {
-				dfs_array_recursion(i, a, c);
+			if(adjArray[v][i] == 1 && !visited[i]) {
+				dfs_array_recursion(i, adjArray, visited);
 			}
 		}
 	}
 
 	//DFS - 인접행렬 / 스택으로 구현 
-	public static void dfs_array_stack(int v, int[][] a, boolean[] c, boolean flag) {
-		int l = a.length-1;
+	public static void dfs_array_stack(int v, int[][] adjArray, boolean[] visited, boolean flag) {
+		int l = adjArray.length-1;
 		Stack<Integer> stack = new Stack<Integer>();
 		stack.push(v);
-		c[v] = true;
+		visited[v] = true;
 		System.out.print(v + " ");
 
 		while(!stack.isEmpty()) {
-			int k = stack.peek();
+			int w = stack.peek();
 			flag = false; 
 
 			for(int i = 1; i <= l; i++) {
-				if(a[k][i] == 1 && !c[i]) {
+				if(adjArray[w][i] == 1 && !visited[i]) {
 					stack.push(i);
 					System.out.print(i + " ");
-					c[i] = true;
+					visited[i] = true;
 					flag = true;
+
 					break;
 				}
 			}
@@ -99,4 +95,5 @@ public class DFS_Array {
 			}
 		}
 	}
+
 }

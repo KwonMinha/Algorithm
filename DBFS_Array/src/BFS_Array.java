@@ -15,30 +15,26 @@
    <output>
    BFS - 인접행렬
    1 2 3 4 
+
  * 블로그 https://minhamina.tistory.com/36
  */
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Stack;
-
+import java.util.*;
 
 public class BFS_Array {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		int n = sc.nextInt(); //정점의 개수 
-		int m = sc.nextInt(); //간선의 개수 
-		int v = sc.nextInt(); //탐색을 시작할 정점의 번호 
+		int n = sc.nextInt(); // 정점의 개수 
+		int m = sc.nextInt(); // 간선의 개수 
+		int v = sc.nextInt(); // 탐색을 시작할 정점의 번호 
 
-		boolean c[] = new boolean[n + 1]; // 방문 check
+		boolean visited[] = new boolean[n + 1]; // 방문 여부를 검사할 배열 
 
 		int[][] adjArray = new int[n+1][n+1];
 
-		//두 정점 사이에 여러 개의 간선이 있을 수 있다.
-		//입력으로 주어지는 간선은 양방향이다.
+		// 두 정점 사이에 여러 개의 간선이 있을 수 있다.
+		// 입력으로 주어지는 간선은 양방향이다.
 		for(int i = 0; i < m; i++) {
 			int v1 = sc.nextInt();
 			int v2 = sc.nextInt();
@@ -48,26 +44,28 @@ public class BFS_Array {
 		}
 
 		System.out.println("BFS - 인접행렬");
-		bfs_array(v, adjArray, c);
+		bfs_array(v, adjArray, visited);
 	}
-	
-	public static void bfs_array(int v, int[][] a, boolean[] c) {
+
+	// BFS - 인접행렬
+	public static void bfs_array(int v, int[][] adjArray, boolean[] visited) {
 		Queue<Integer> q = new LinkedList<>();
-		int n = a.length - 1;
+		int n = adjArray.length - 1;
 
 		q.add(v);
-		c[v] = true;
+		visited[v] = true;
 
 		while (!q.isEmpty()) {
 			v = q.poll();
 			System.out.print(v + " ");
 
 			for (int i = 1; i <= n; i++) {
-				if (a[v][i] == 1 && !c[i]) {
+				if (adjArray[v][i] == 1 && !visited[i]) {
 					q.add(i);
-					c[i] = true;
+					visited[i] = true;
 				}
 			}
 		}
 	}
+
 }

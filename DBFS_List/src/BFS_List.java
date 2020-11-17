@@ -11,30 +11,25 @@
    1 2
    3 4
    3 1
-   
+
    <output>
    BFS - 인접리스트
    3 1 4 2 5 
-   
+
  * 블로그 https://minhamina.tistory.com/36
  */
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 public class BFS_List {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		int n = sc.nextInt(); //정점의 개수 
-		int m = sc.nextInt(); //간선의 개수 
-		int v = sc.nextInt(); //탐색을 시작할 정점의 번호 
+		int n = sc.nextInt(); // 정점의 개수 
+		int m = sc.nextInt(); // 간선의 개수 
+		int v = sc.nextInt(); // 탐색을 시작할 정점의 번호 
 
-		boolean c[] = new boolean[n + 1]; // 방문 check
+		boolean visited[] = new boolean[n + 1]; // 방문 여부를 검사할 배열 
 
 		LinkedList<Integer>[] adjList = new LinkedList[n + 1];
 
@@ -42,8 +37,8 @@ public class BFS_List {
 			adjList[i] = new LinkedList<Integer>();
 		}
 
-		//두 정점 사이에 여러 개의 간선이 있을 수 있다.
-		//입력으로 주어지는 간선은 양방향이다.
+		// 두 정점 사이에 여러 개의 간선이 있을 수 있다.
+		// 입력으로 주어지는 간선은 양방향이다.
 		for (int i = 0; i < m; i++) {
 			int v1 = sc.nextInt();
 			int v2 = sc.nextInt();
@@ -51,15 +46,16 @@ public class BFS_List {
 			adjList[v2].add(v1);
 		}
 
-		for (int i = 1; i <= n; i++) {
-			Collections.sort(adjList[i]);
+		for (int i = 1; i <= n; i++) { 
+			Collections.sort(adjList[i]); // 방문 순서를 위해 오름차순 정렬 
 		}
 
 		System.out.println("BFS - 인접리스트");
-		bfs_list(v, adjList, c);
+		bfs_list(v, adjList, visited);
 	}
 
-	public static void bfs_list(int v, LinkedList<Integer>[] a, boolean[] visited) {
+	// BFS - 인접리스트 
+	public static void bfs_list(int v, LinkedList<Integer>[] adjList, boolean[] visited) {
 		Queue<Integer> queue = new LinkedList<Integer>();
 		visited[v] = true; 
 		queue.add(v);
@@ -68,12 +64,12 @@ public class BFS_List {
 			v = queue.poll(); 
 			System.out.print(v + " ");
 
-			Iterator<Integer> iter = a[v].listIterator();
+			Iterator<Integer> iter = adjList[v].listIterator();
 			while(iter.hasNext()) { 
-				int k = iter.next(); 
-				if(!visited[k]) { 
-					visited[k] = true; 
-					queue.add(k); 
+				int w = iter.next(); 
+				if(!visited[w]) { 
+					visited[w] = true; 
+					queue.add(w); 
 				} 
 			}
 		}
