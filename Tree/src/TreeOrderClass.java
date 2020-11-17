@@ -46,7 +46,7 @@ public class TreeOrderClass {
 	public Node root; //초기 root는 null
 
 	public void createNode(int data, int leftData, int rightData) {
-		if(root == null) {//초기 상태 - 루트 노드 생성 
+		if(root == null) { //초기 상태 - 루트 노드 생성 
 			root = new Node(data);
 			
 			//좌우 값이 있는 경우, 즉 -1이 아닌 경우 노드 생성 
@@ -67,7 +67,7 @@ public class TreeOrderClass {
 		if(node == null) { //도착한 노드가 null이면 재귀 종료 - 찾을(삽입할) 노드 X
 			return;
 		} else if(node.data == data) { //들어갈 위치를 찾았다면 
- 			if(leftData != -1) { //.이 아니라 값이 있는 경우에만 좌우 노드 생성 
+ 			if(leftData != -1) { //-1이 아니라 값이 있는 경우에만 좌우 노드 생성 
  				node.left = new Node(leftData);
  			}
  			if(rightData != -1) {
