@@ -78,7 +78,7 @@ public class TreeOrderClass {
  			searchNode(node.right, data, leftData, rightData); //오른쪽 재귀 탐색 
  		}
 	}
-	
+	 
 	//전위순회 Preorder : Root -> Left -> Right
 	public void preOrder(Node node) {
 		if(node != null) {
