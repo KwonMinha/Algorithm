@@ -157,6 +157,37 @@ public class TreeOrderMaster {
 			System.out.println(i);
 		}
 	}
+	
+	public static int getNodeCount(Node root) {
+		int count = 0;
+		
+		if(root != null)
+			count = 1 + getNodeCount(root.left) + getNodeCount(root.right);
+		
+		return count;
+	}
+	
+	public static int getLeafCount(Node root) {
+		int count = 0;
+		
+		if(root != null) {
+			if(root.left == null && root.right == null)
+				return 1;
+			else
+				count = getLeafCount(root.left) + getLeafCount(root.right);
+		}
+		
+		return count;
+	}
+	
+	public static int getHeight(Node root) {
+		int height = 0;
+		
+		if(root != null) 
+			height = 1 + Math.max(getHeight(root.left), getHeight(root.right));
+		
+		return height;
+	}
 
 
 	public static void main(String[] args) {
@@ -175,20 +206,26 @@ public class TreeOrderMaster {
 		System.out.println("전위 순회");
 		t.preOrder(t.root);
 
-		System.out.println("\n중위 순회");
+		System.out.println("\n\n중위 순회");
 		t.inOrder(t.root);
 
-		System.out.println("\n후위 순회");
+		System.out.println("\n\n후위 순회");
 		t.postOrder(t.root);
 
-		System.out.println("\n반복적 순회");
+		System.out.println("\n\n반복적 순회");
 		t.iterativeOrder(t.root);
 
-		System.out.println("\n레벨 순회");
+		System.out.println("\n\n레벨 순회");
 		t.levelOrder(t.root);
 
-		System.out.println("\n레벨별 노드");
+		System.out.println("\n\n레벨별 노드");
 		t.levelByLevel(t.root);
+		
+		System.out.println("\n노드의 개수 : " + getNodeCount(t.root));
+		
+		System.out.println("\n단말 노드의 개수 : " + getLeafCount(t.root));
+		
+		System.out.println("\n트리의 높이 : " + getHeight(t.root));
 	}
 
 }
