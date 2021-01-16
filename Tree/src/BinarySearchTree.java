@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * @author Minha Gwon 
  * 이진 탐색 트리 
@@ -8,28 +6,40 @@ import java.util.Scanner;
  * Class 구조체에 노드값, 왼쪽 자식 노드값, 오른쪽 자식 노드값 저장해 구현 
 
    입력 : 첫 번째 줄에 트리의 노드 개수 n이 주어진다. ( 1 ≤ n ≤ 100 ) 
-         두 번째 줄부터 노드의 값이 주어진다.
+         두 번째 줄에 루트 노드의 값이 주어진다.
+         세 번째 줄부터 n-1까지의 노드 값이 주어진다. 
 
-10        
-12
-22
-99
-30
-26
-18
-3
+10
 35
+18
 68
 7
-
+26
+99
+3
+12
+22
+30
 
  */
 
+import java.util.Scanner;
+
 public class BinarySearchTree {
+	class Node {
+		int data; 
+		Node left; 
+		Node right;
+
+		Node(int data){ 
+			this.data = data;
+		}
+	}
+	
 	public Node root;
 
 	// 순환적인 탐색 
-	public Node circularSearch(Node node, int key) {
+	public static Node circularSearch(Node node, int key) {
 		if(node == null) {
 			return null;
 		} 
@@ -44,7 +54,7 @@ public class BinarySearchTree {
 	}
 
 	// 반복적인 탐색 
-	public Node repetitiveSearch(Node node, int key) {
+	public static Node repetitiveSearch(Node node, int key) {
 		while(node != null) {
 			if(key == node.data) {
 				return node;
@@ -61,9 +71,8 @@ public class BinarySearchTree {
 	// 노드 삽입 
 	public Node insertNode(Node node, int key) {
 		if(node == null) { 
-			return new Node(key); // 루트 노드가 빈 경우, 새로운 노드 삽입후 반환 
+			return new Node(key); // 노드가 빈 경우, 새로운 노드 삽입후 반환 
 		}
-
 		
 		// 그렇지 않으면 순환적으로 트리를 내려감 
 		if(key < node.data) {
@@ -71,7 +80,7 @@ public class BinarySearchTree {
 		} else if(key > node.data) {
 			node.right = insertNode(node.right, key);
 		}
-
+		
 		// 변경된 루트 노드 반환 
 		return node;
 	}
@@ -99,7 +108,6 @@ public class BinarySearchTree {
 				return temp;
 			}
 
-			System.out.println("3333");
 			// 3번의 경우 - 두개의 서브 트리가 있는 경우 
 			temp = minValueNode(root.right); // 오른쪽 서브 트리에서 가장 작은 값이 후계 노드 
 
@@ -110,6 +118,7 @@ public class BinarySearchTree {
 		return root;
 	}
 
+	// 오른쪽 서브트리에서 최소 키 값을 가지는 노드 반환 
 	public Node minValueNode(Node node) { // 오른쪽 서브트리에서 가장 작은 값 반환 
 		Node currentNode = node;
 
@@ -134,50 +143,36 @@ public class BinarySearchTree {
 		BinarySearchTree t = new BinarySearchTree();
 
 		for (int i = 0; i < n; i++) {
-			t.root = t.insertNode(t.root, sc.nextInt());
-			System.out.println(t.root.data);
+			int key = sc.nextInt();
+			
+			if(circularSearch(t.root, key) == null) {
+				t.root = t.insertNode(t.root, key);
+			}
 		}
-
-
-		System.out.println("이진 탐색 트리 중위 순회");
+		
+		System.out.println("\n이진 탐색 트리 중위 순회");
 		t.inOrder(t.root);
+	
 		
-		System.out.println("\n\n순환적인 탐색");
-		if(t.circularSearch(t.root, 18) != null) {
-			System.out.println("18을 발견함");
+		if(repetitiveSearch(t.root, 68) != null) {
+			System.out.println("\n\n68 탐색 성공");
 		} else {
-			System.out.println("18을 발견못함");
+			System.out.println("\n\n68 탐색 실패");
 		}
 		
-		System.out.println("\n\n반복적인 탐색");
-		if(t.repetitiveSearch(t.root, 68) != null) {
-			System.out.println("68을 발견함");
-		} else {
-			System.out.println("68을 발견못함");
-		}
 		
 //		System.out.println("\n\n1. 단말 노드 삭제 - 30 삭제 ");
 //		t.deleteNode(t.root, 30);
 //		t.inOrder(t.root);
 		
-		System.out.println("\n\n2. 하나의 서브트리만 가진 노드 삭제 - 68 삭제 ");
-		System.out.println(t.deleteNode(t.root, 68).data);
-		t.inOrder(t.root);
+//		System.out.println("\n\n2. 하나의 서브트리만 가진 노드 삭제 - 68 삭제 ");
+//		System.out.println(t.deleteNode(t.root, 68).data);
+//		t.inOrder(t.root);
 		
 //		System.out.println("\n\n3. 두개의 서브트리를 가진 노드 삭제 - 18 삭제 ");
 //		t.deleteNode(t.root, 18);
 //		t.inOrder(t.root);
 		
 		
-	}
-
-	class Node {
-		int data; 
-		Node left; 
-		Node right;
-
-		Node(int data){ 
-			this.data = data;
-		}
 	}
 }
