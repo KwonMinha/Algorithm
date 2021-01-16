@@ -35,7 +35,7 @@ public class BinarySearchTree {
 			this.data = data;
 		}
 	}
-	
+
 	public Node root;
 
 	// 순환적인 탐색 
@@ -73,15 +73,15 @@ public class BinarySearchTree {
 		if(node == null) { 
 			return new Node(key); // 노드가 빈 경우, 새로운 노드 삽입후 반환 
 		}
-		
+
 		// 그렇지 않으면 순환적으로 트리를 내려감 
 		if(key < node.data) {
 			node.left = insertNode(node.left, key);
 		} else if(key > node.data) {
 			node.right = insertNode(node.right, key);
 		}
-		
-		// 변경된 루트 노드 반환 
+
+		// 삽입 완료 후, 루트 노드 반환하며 끝 
 		return node;
 	}
 
@@ -95,31 +95,27 @@ public class BinarySearchTree {
 			root.left = deleteNode(root.left, key);
 		} else if(key > root.data) { // 키가 루트보다 크다면, 오른쪽 서브 트리에 있는 것 
 			root.right = deleteNode(root.right, key);
-		} else { // 키가 루트와 같다면 이 노드를 삭제하면 됨 
-			Node temp;
+		} else { // 키가 루트와 같다면 이 노드가 바로 삭제할 노드
 			
-			if(root.left == null) { // 1번, 2번의 경우 - 단말 노드인 경우 / 하나의 서브트리만 있는 경우 
-				System.out.println("left");
-				temp = root.right;
-				return temp;
+			// 1번, 2번의 경우 - 1. 단말 노드인 경우 / 2. 하나의 서브트리만 있는 경우 
+			if(root.left == null) { 
+				return root.right; // 널 값이면 널 반환 / 오른쪽 있으면 오른쪽 반환해서 이전의 if, else if에서의 왼쪽이든 오른쪽 노드에 붙여줌 
 			} else if(root.right == null) {
-				System.out.println("right");
-				temp = root.left;
-				return temp;
+				return root.left; // left가 널인 경우와 동일 
 			}
 
-			// 3번의 경우 - 두개의 서브 트리가 있는 경우 
-			temp = minValueNode(root.right); // 오른쪽 서브 트리에서 가장 작은 값이 후계 노드 
+			// 3번의 경우 - 3. 두개의 서브 트리가 있는 경우 (left, right 둘 다 null 아님) 
+			Node temp = minValueNode(root.right); // 오른쪽 서브 트리에서 가장 작은 값(가장 왼쪽 노드)가 후계 노드 
 
-			root.data = temp.data; // 중위 순회시 후계 노드 복사 
-			root.right = deleteNode(root.right, temp.data); // 중위 순회시 후계 노드 삭제 
+			root.data = temp.data; // 후계 노드 값 복사(삭제할 노드의 값을 후계 노드 값으로 변경  
+			root.right = deleteNode(root.right, temp.data); // 후계 노드 삭제 - 오른쪽 노드에게 가장 작은 값을 가졌던 맨 왼쪽 단말노드를 다시 deleteNode를 호출해 삭제하라고 함  
 		}
 
 		return root;
 	}
 
-	// 오른쪽 서브트리에서 최소 키 값을 가지는 노드 반환 
-	public Node minValueNode(Node node) { // 오른쪽 서브트리에서 가장 작은 값 반환 
+	// 후계 노드 찾기 - 오른쪽 서브트리에서 가장 작은 값을 가지는 노드 반환 
+	public Node minValueNode(Node node) { 
 		Node currentNode = node;
 
 		while(currentNode.left != null) {
@@ -144,35 +140,33 @@ public class BinarySearchTree {
 
 		for (int i = 0; i < n; i++) {
 			int key = sc.nextInt();
-			
+
 			if(circularSearch(t.root, key) == null) {
 				t.root = t.insertNode(t.root, key);
 			}
 		}
-		
+
 		System.out.println("\n이진 탐색 트리 중위 순회");
 		t.inOrder(t.root);
-	
-		
+
+
 		if(repetitiveSearch(t.root, 68) != null) {
 			System.out.println("\n\n68 탐색 성공");
 		} else {
 			System.out.println("\n\n68 탐색 실패");
 		}
-		
-		
-//		System.out.println("\n\n1. 단말 노드 삭제 - 30 삭제 ");
-//		t.deleteNode(t.root, 30);
-//		t.inOrder(t.root);
-		
-//		System.out.println("\n\n2. 하나의 서브트리만 가진 노드 삭제 - 68 삭제 ");
-//		System.out.println(t.deleteNode(t.root, 68).data);
-//		t.inOrder(t.root);
-		
-//		System.out.println("\n\n3. 두개의 서브트리를 가진 노드 삭제 - 18 삭제 ");
-//		t.deleteNode(t.root, 18);
-//		t.inOrder(t.root);
-		
-		
+
+
+		System.out.println("\n1. 단말 노드 삭제 - 30 삭제 ");
+		t.deleteNode(t.root, 30);
+		t.inOrder(t.root);
+
+		System.out.println("\n\n2. 하나의 서브트리만 가진 노드 삭제 - 68 삭제 ");
+		t.deleteNode(t.root, 68);
+		t.inOrder(t.root);
+
+		System.out.println("\n\n3. 두개의 서브트리를 가진 노드 삭제 - 18 삭제 ");
+		t.deleteNode(t.root, 18);
+		t.inOrder(t.root);
 	}
 }
