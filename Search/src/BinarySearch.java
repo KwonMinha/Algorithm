@@ -14,7 +14,7 @@ public class BinarySearch {
 		System.out.println(binarySearch1(3, 0, arr.length-1)); // 1
 		
 		System.out.println("\n2. 반복을 이용한 이진 탐색");
-		System.out.println(binarySearch2(99, 0, arr.length-1));
+		System.out.println(binarySearch2(99, 0, arr.length-1)); // 8
 		
 	}
 	
@@ -27,9 +27,9 @@ public class BinarySearch {
 			if(key == arr[mid]) { // 탐색 성공 
 				return mid;
 			} else if(key < arr[mid]) {
-				return binarySearch1(key ,low, mid-1); // 왼쪽 부분 배열 탐색 
+				return binarySearch1(key ,low, mid-1); // 왼쪽 부분 - arr[0]부터 arr[mid-1]에서의 탐색 
 			} else {
-				return binarySearch1(key, mid+1, high); // 오른쪽 부분 배열 탐색 
+				return binarySearch1(key, mid+1, high); // 오른쪽 부분 - arr[mid+1]부터 arr[high]에서의 탐색 
 			}
 		}
 		
