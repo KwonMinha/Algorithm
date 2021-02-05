@@ -11,10 +11,10 @@ public class BinarySearch {
 
 	public static void main(String[] args) {
 		System.out.println("1. 순환 호출을 이용한 이진 탐색");
-		System.out.println(binarySearch1(3, 0, arr.length-1)); // 1
+		System.out.println(binarySearch1(5, 0, arr.length-1)); // 1
 		
 		System.out.println("\n2. 반복을 이용한 이진 탐색");
-		System.out.println(binarySearch2(99, 0, arr.length-1)); // 8
+		System.out.println(binarySearch2(20, 0, arr.length-1)); // 8
 		
 	}
 	
