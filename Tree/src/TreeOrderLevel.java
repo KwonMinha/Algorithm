@@ -34,22 +34,21 @@
  */
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-class Node { 
-	int data; 
-	Node left;
-	Node right; 
-
-	Node(int data){ 
-		this.data = data;
-	}
-}
-
 public class TreeOrderLevel {
+	static class Node { 
+		int data; 
+		Node left;
+		Node right; 
+
+		Node(int data){ 
+			this.data = data;
+		}
+	}
+	
 	public Node root; 
 
 	public void createNode(int data, int leftData, int rightData) {

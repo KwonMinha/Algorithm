@@ -30,17 +30,17 @@
 
 import java.util.*;
 
-class Node { 
-	int data; 
-	Node left;
-	Node right; 
+public class TreeOrderIterative {
+	static class Node { 
+		int data; 
+		Node left;
+		Node right; 
 
-	Node(int data){ 
-		this.data = data;
+		Node(int data){ 
+			this.data = data;
+		}
 	}
-}
-
-public class TreeOrderStack {
+	
 	public Node root; 
 
 	public void createNode(int data, int leftData, int rightData) {
@@ -99,7 +99,7 @@ public class TreeOrderStack {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
-		TreeOrderStack t = new TreeOrderStack();
+		TreeOrderIterative t = new TreeOrderIterative();
 
 		for (int i = 0; i < n; i++) {
 			int a = sc.nextInt();

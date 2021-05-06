@@ -31,18 +31,18 @@
 
 import java.util.*;
 
-class Node { //트리의 노드 정보를 저장할 클래스 구조체 
-	int data; //노드 값 
-	Node left; //왼쪽 자식 노드 참조 값 
-	Node right; //오른쪽 자식 노드 참조 값 
-	
-	//추가할 때 참조되는 왼쪽, 오른쪽 자식의 값은 모르닌까 일단 data 값을 기반으로 Node 객체 생성 
-	Node(int data){ 
-		this.data = data;
-	}
-}
-
 public class TreeOrderClass {
+	static class Node { //트리의 노드 정보를 저장할 클래스 구조체 
+		int data; //노드 값 
+		Node left; //왼쪽 자식 노드 참조 값 
+		Node right; //오른쪽 자식 노드 참조 값 
+		
+		//추가할 때 참조되는 왼쪽, 오른쪽 자식의 값은 모르닌까 일단 data 값을 기반으로 Node 객체 생성 
+		Node(int data){ 
+			this.data = data;
+		}
+	}
+	
 	public Node root; //초기 root는 null
 
 	public void createNode(int data, int leftData, int rightData) {
