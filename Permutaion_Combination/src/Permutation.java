@@ -7,7 +7,7 @@
 
 public class Permutation {
 	public static void main(String[] args) {
-		int[] arr = {1, 2, 3}; //순열을 만들 배열 
+		int[] arr = {1, 2, 3, 4}; //순열을 만들 배열 
 		int n = arr.length; //배열의 길이 
 		int[] output = new int[n]; //순열 출력을 위한 배열 
 		boolean[] visited = new boolean[n]; //중복해서 뽑지 않기 위해 방문했는지를 체크하는 배열 
@@ -16,7 +16,7 @@ public class Permutation {
 		per1(arr, 0, n, 3);
 
 		System.out.println("\n-------- 2. DFS ---------");
-		per2(arr, output, visited, 0, n, 3); //r = 3, 3개를 뽑을 것 
+		per2(arr, output, visited, 0, n, 2); //r = 3, 3개를 뽑을 것 
 	}
 
 	//1. Swap 함수를 이용해 구현 - 순서 없이 n 개중에서 r 개를 뽑는 경우
