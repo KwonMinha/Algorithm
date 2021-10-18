@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class SW1_3 {
+public class SW_BitPattern {
 
 	public static void main(String[] args) {
 		// String hex = "0DEC";
@@ -15,6 +15,7 @@ public class SW1_3 {
 
 //		int hexToDecimal = Integer.parseInt(hex, 16);
 //		String decimalToBinary = Integer.toBinaryString(hexToDecimal);
+		// 이렇게 하면 앞이나 뒤의 00같은 것들이 짤림
 
 		// System.out.println(decimalToBinary);
 
